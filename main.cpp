@@ -4,13 +4,14 @@ using namespace std;
 
 
 int main() {
-    int size = 5;
-    double initValue = 4.15;
+
+     int size = 5;
+     double initValue = 4.15;
     
-    double* arr = dynamicArray(size, initValue);
+     double* arr = dynamicArray(size, initValue);
     
-    cout << "Initial array: ";
-    printArray(arr, size);
+     cout << "Initial array: ";
+     printArray(arr, size);
     
     changeValue(&arr[0]);
     
@@ -22,5 +23,5 @@ int main() {
 
     delete[] arr;
 
-    return 0;
+     return 0;
 }
