@@ -2,10 +2,6 @@
 #include "workshop.h"
 using namespace std;
 
-extern double arrayMax(double* arr, int size);
-extern void printArray(double* arr, int size);
-extern double* dynamicArray(int N, double M);
-extern void changeValue(double* ptr);
 
 int main() {
     int size = 5;

@@ -1,5 +1,5 @@
-#ifndef WORKSHOP_H
-#define WORKSHOP_H
+ #ifndef WORKSHOP_H
+ #define WORKSHOP_H
 
 void changeValue(double* ptr);
 double arrayMax(double* arr, int size);
