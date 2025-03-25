@@ -6,7 +6,7 @@ Person* createPersonArray(int n){
         return nullptr;
     }
 
-    Person* people = new person[];
+    Person* people = new Person[n];
 
     for (int i = 0; i < n; i++){
         people[i].name = "John Doe";

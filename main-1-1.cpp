@@ -11,13 +11,13 @@ int main(){
 
     Person* people = createPersonArray(n);
 
-    if (peopel){
+    if (people){
         for (int i = 0; i < n; i++){
-            cout << "Person" << i+1 << ":" << people[i].name << ", Age: " << people[i].age << std;
+            cout << "Person" << i+1 << ":" << people[i].name << ", Age: " << people[i].age << endl;
         }
         delete[] people;
     }else{
-        cout << "Invaild number of person." << std;
+        cout << "Invaild number of person." << endl;
     }
     return 0;
 }
