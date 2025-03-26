@@ -14,7 +14,8 @@ PersonList deepCopyPersonList(PersonList pl){
     dcpl.numPeople = pl.numPeople;
 
     for (int i = 0; i < dcpl.numPeople; i++){
-        dcpl.people[i] = pl.people[i];
+        dcpl.people[i].name = pl.people[i].name;
+        dcpl.people[i].age = pl.people[i].age;
     }
     return dcpl;
 }
