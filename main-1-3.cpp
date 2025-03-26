@@ -13,6 +13,11 @@ int main(){
     PersonList origin = createPersonList(n);
     PersonList copies = deepCopyPersonList(origin);
 
+    if (n > 0) {
+        original.people[0].name = "Modified Name";
+        original.people[0].age = 99;
+    }
+
     cout << "Origin Personlist: " << endl;
     for (int i = 0; i < origin.numPeople; i++){
         cout << "Person " << i+1 << ":" << origin.people[i].name << ", Age: " << origin.people[i].age << endl;
