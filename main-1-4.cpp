@@ -14,11 +14,8 @@ int main() {
         return 1;
     }
 
-
     PersonList original = createPersonList(n);
-
     PersonList copy = shallowCopyPersonList(original);
-
 
     std::cout << "Original list:" << std::endl;
     for (int i = 0; i < original.numPeople; i++) {
