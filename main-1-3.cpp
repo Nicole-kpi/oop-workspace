@@ -1,40 +1,39 @@
 #include <iostream>
 #include "Person.h"
-using namespace std;
-
 extern PersonList deepCopyPersonList(PersonList pl);
 extern PersonList createPersonList(int n);
 
-int main(){
+int main() {
     int n;
-    cout << "Enter the number of person: ";
-    cin >> n;
+    std::cout << "Enter the number of person: ";
+    std::cin >> n;
 
-       if (n <= 0) {
-        cerr << "Number of people must be greater than 0." << endl;
+    if (n <= 0) {
+        std::cerr << "Number of people must be greater than 0.\n";
         return 1;
     }
 
-    PersonList origin = createPersonList(n);
-    PersonList copies = deepCopyPersonList(origin);
+    PersonList original = createPersonList(n);
 
     if (n > 0) {
-        origin.people[0].name = "Modified Name";
-        origin.people[0].age = 99;
+        original.people[0].name = "Jane Smith";
+        original.people[0].age = 0;
     }
 
-    cout << "Origin Personlist: " << endl;
-    for (int i = 0; i < origin.numPeople; i++){
-        cout << "Person " << i+1 << ":" << origin.people[i].name << ", Age: " << origin.people[i].age << endl;
+    PersonList copy = deepCopyPersonList(original);
+
+    std::cout << "Origin PersonList:\n";
+    for (int i = 0; i < original.numPeople; i++) {
+        std::cout << "Person " << i + 1 << ": " << original.people[i].name << ", Age: " << original.people[i].age << '\n';
     }
-    
-    cout << "Copies Personlist: " << endl;
-    for (int i = 0; i < copies.numPeople; i++){
-        cout << "Person " << i+1 << ":" << copies.people[i].name << ", Age: " << copies.people[i].age << endl;
+
+    std::cout << "Copies PersonList:\n";
+    for (int i = 0; i < copy.numPeople; i++) {
+        std::cout << "Person " << i + 1 << ": " << copy.people[i].name << ", Age: " << copy.people[i].age << '\n';
     }
-    
-    delete[] origin.people;
-    delete[] copies.people;
+
+    delete[] original.people;
+    delete[] copy.people;
 
     return 0;
 }
