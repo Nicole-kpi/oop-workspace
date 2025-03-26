@@ -1,34 +1,36 @@
 #include <iostream>
 #include "Person.h"
-using namespace std;
 
-extern PersonList createPersonList(int n);
-extern PersonList shallowCopyPersonList(PersonList pl);
+PersonList createPersonList(int n);
+PersonList shallowCopyPersonList(PersonList pl);
 
 int main() {
     int n;
-    cout << "Enter number of people: ";
-    cin >> n;
+    std::cout << "Enter number of people: ";
+    std::cin >> n;
 
     if (n <= 0) {
-        cerr << "Number of people must be greater than 0.\n";
+        std::cerr << "Number of people must be greater than 0.\n";
         return 1;
     }
 
-    PersonList origin = createPersonList(n);
-    PersonList copy = shallowCopyPersonList(origin);
 
-    cout << "Original list: " << endl;
-    for (int i = 0; i < origin.numPeople; i++) {
-        cout << origin.people[i].name << ", " << origin.people[i].age << endl;
+    PersonList original = createPersonList(n);
+
+    PersonList copy = shallowCopyPersonList(original);
+
+
+    std::cout << "Original list:" << std::endl;
+    for (int i = 0; i < original.numPeople; i++) {
+        std::cout << original.people[i].name << ", " << original.people[i].age << '\n';
     }
 
-    cout << "Copied list (shallow copy): " << endl;
+    std::cout << "Copied list (shallow copy): " << std::endl;
     for (int i = 0; i < copy.numPeople; i++) {
-        cout << copy.people[i].name << ", " << copy.people[i].age << endl;
+        std::cout << copy.people[i].name << ", " << copy.people[i].age << '\n';
     }
 
-    delete[] origin.people;
+    delete[] original.people;
 
     return 0;
 }
