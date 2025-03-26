@@ -19,8 +19,8 @@ int main(){
     PersonList copies = deepCopyPersonList(origin);
 
     if (n > 0) {
-        original.people[0].name = "Modified Name";
-        original.people[0].age = 99;
+        origin.people[0].name = "Modified Name";
+        origin.people[0].age = 99;
     }
 
     cout << "Origin Personlist: " << endl;
