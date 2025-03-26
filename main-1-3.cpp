@@ -11,7 +11,7 @@ int main(){
     cin >> n;
 
        if (n <= 0) {
-        cerr << "Number of people must be greater than 0." << std;
+        cerr << "Number of people must be greater than 0." << endl;
         return 1;
     }
 
