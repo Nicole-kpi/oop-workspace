@@ -1,8 +1,7 @@
 #include <iostream>
 #include "Person.h"
-
-PersonList createPersonList(int n);
-PersonList shallowCopyPersonList(PersonList pl);
+extern PersonList shallowCopyPersonList(PersonList pl);
+extern PersonList createPersonList(int n);
 
 int main() {
     int n;
@@ -14,19 +13,25 @@ int main() {
         return 1;
     }
 
+    // 创建并初始化原始列表
     PersonList original = createPersonList(n);
+
+    // 浅拷贝
     PersonList copy = shallowCopyPersonList(original);
 
+    // 输出原始列表
     std::cout << "Original list:" << std::endl;
     for (int i = 0; i < original.numPeople; i++) {
-        std::cout << original.people[i].name << ", " << original.people[i].age << '\n';
+        std::cout << "name: " << original.people[i].name << ", age: " << original.people[i].age << '\n';
     }
 
+    // 输出浅拷贝的列表
     std::cout << "Copied list (shallow copy): " << std::endl;
     for (int i = 0; i < copy.numPeople; i++) {
-        std::cout << copy.people[i].name << ", " << copy.people[i].age << '\n';
+        std::cout << "name: " << copy.people[i].name << ", age: " << copy.people[i].age << '\n';
     }
 
+    // 删除原始列表的内存
     delete[] original.people;
 
     return 0;

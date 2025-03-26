@@ -4,8 +4,8 @@
 PersonList shallowCopyPersonList(PersonList pl) {
     PersonList scpl;
 
+    scpl.numPeople = pl.numPeople;
     scpl.people = pl.people;
-    scpl.numPeople = scpl.numPeople;
 
     return scpl;
 }
