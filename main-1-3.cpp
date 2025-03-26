@@ -10,6 +10,11 @@ int main(){
     cout << "Enter the number of person: ";
     cin >> n;
 
+       if (n <= 0) {
+        cerr << "Number of people must be greater than 0." << std;
+        return 1;
+    }
+
     PersonList origin = createPersonList(n);
     PersonList copies = deepCopyPersonList(origin);
 
