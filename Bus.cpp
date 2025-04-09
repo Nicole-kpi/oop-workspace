@@ -1,4 +1,4 @@
-#include "bus.h"
+#include "Bus.h"
 #include <ctime>
 Bus::Bus(std::string id) : Vehicle(id) {}
 double Bus::getParkingDuration() const{

@@ -1,4 +1,4 @@
-#include "parkinglot.h"
+#include "Parkinglot.h"
 #include <iostream>
 
 ParkingLot::ParkingLot(int cap) : capacity(cap), count(0) {

@@ -3,10 +3,10 @@
 #include <thread>
 #include <chrono>
 
-#include "car.h"
-#include "bus.h"
-#include "motorbike.h"
-#include "parkinglot.h"
+#include "Car.h"
+#include "Bus.h"
+#include "Motorbike.h"
+#include "Parkinglot.h"
 
 int main() {
     ParkingLot lot(10);
