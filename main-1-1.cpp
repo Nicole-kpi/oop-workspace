@@ -1,32 +1,24 @@
 #include <iostream>
-#include <string>
-#include <thread>
-#include <chrono>
-
 #include "Car.h"
 #include "Bus.h"
 #include "Motorbike.h"
-#include "Parkinglot.h"
+#include <thread>
+#include <chrono>
 
 int main() {
-    ParkingLot lot(10);
+    Car c("C1");
+    Bus b("B1");
+    Motorbike m("M1");
 
-    lot.parkVehicle(new Car("C1"));
-    lot.parkVehicle(new Car("C2"));
-    lot.parkVehicle(new Car("C3"));
-    lot.parkVehicle(new Car("C4"));
-    lot.parkVehicle(new Car("C5"));
+    std::cout << "Testing vehicle IDs..." << std::endl;
+    std::cout << c.getID() << ", " << b.getID() << ", " << m.getID() << std::endl;
 
-    lot.parkVehicle(new Bus("B1"));
-    lot.parkVehicle(new Bus("B2"));
-    lot.parkVehicle(new Bus("B3"));
+    std::this_thread::sleep_for(std::chrono::seconds(5));
 
-    lot.parkVehicle(new Motorbike("M1"));
-    lot.parkVehicle(new Motorbike("M2"));
-    std::this_thread::sleep_for(std::chrono::seconds(20));
-
-    int overstayingCount = lot.countOverstayingVehicles(15);
-    std::cout << overstayingCount << std::endl;
+    std::cout << "Parking durations after 5 seconds:" << std::endl;
+    std::cout << "Car: " << c.getParkingDuration() << " seconds\n";
+    std::cout << "Bus: " << b.getParkingDuration() << " seconds\n";
+    std::cout << "Motorbike: " << m.getParkingDuration() << " seconds\n";
 
     return 0;
 }
