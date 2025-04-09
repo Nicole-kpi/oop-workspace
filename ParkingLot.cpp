@@ -1,43 +1,53 @@
 #include "ParkingLot.h"
 #include <iostream>
 
-ParkingLot::ParkingLot(int capacity) : maxCapacity(capacity) {}
-
-ParkingLot::~ParkingLot() {
-    for (auto vehicle : vehicles) {
-        delete vehicle;
+ParkingLot::ParkingLot(int capacity) : maxCapacity(capacity), currentCount(0) {
+    vehicles = new Vehicle*[capacity];
+    for (int i = 0; i < capacity; ++i) {
+        vehicles[i] = nullptr;
     }
 }
 
+ParkingLot::~ParkingLot() {
+    for (int i = 0; i < currentCount; ++i) {
+        delete vehicles[i];
+    }
+    delete[] vehicles;
+}
+
 int ParkingLot::getCount() const {
-    return vehicles.size();
+    return currentCount;
 }
 
 void ParkingLot::parkVehicle(Vehicle* vehicle) {
-    if (vehicles.size() >= maxCapacity) {
+    if (currentCount >= maxCapacity) {
         std::cout << "The lot is full" << std::endl;
         delete vehicle;
         return;
     }
-    vehicles.push_back(vehicle);
+    vehicles[currentCount++] = vehicle;
 }
 
 void ParkingLot::unparkVehicle(int id) {
-    for (auto it = vehicles.begin(); it != vehicles.end(); ++it) {
-        if ((*it)->getID() == id) {
-            delete *it;
-            vehicles.erase(it);
+    for (int i = 0; i < currentCount; ++i) {
+        if (vehicles[i]->getID() == id) {
+            delete vehicles[i];
+            for (int j = i; j < currentCount - 1; ++j) {
+                vehicles[j] = vehicles[j + 1];
+            }
+            currentCount--;
+            vehicles[currentCount] = nullptr;
             return;
         }
     }
     std::cout << "Vehicle not in the lot" << std::endl;
 }
 
-int ParkingLot::countOverstayingVehicles(double maxParkingDuration) const {
+int ParkingLot::countOverstayingVehicles(int maxParkingDuration) const {
     int count = 0;
-    for (const auto vehicle : vehicles) {
-        if (vehicle->getParkingDuration() > maxParkingDuration) {
-            ++count;
+    for (int i = 0; i < currentCount; ++i) {
+        if (vehicles[i]->getParkingDuration() > maxParkingDuration) {
+            count++;
         }
     }
     return count;

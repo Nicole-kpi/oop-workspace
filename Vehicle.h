@@ -13,6 +13,6 @@ public:
     virtual ~Vehicle() = default;
     int getID() const;
     std::time_t getTimeOfEntry() const;
-    virtual double getParkingDuration() const;
+    virtual int getParkingDuration() const = 0;
 };
 #endif

@@ -2,29 +2,16 @@
 #include "Bus.h"
 #include "Motorbike.h"
 #include <iostream>
-#include <ctime> 
-
-
-void delay(int seconds) {
-    clock_t start = clock();
-    while ((clock() - start) / CLOCKS_PER_SEC < seconds) {
-    }
-}
 
 int main() {
-    Vehicle* vehicles[] = {
-        new Car(1),
-        new Bus(2),
-        new Motorbike(3)
-    };
-
-   
-    delay(5);
+    Vehicle* vehicles[3];
+    vehicles[0] = new Car(1);
+    vehicles[1] = new Bus(2);
+    vehicles[2] = new Motorbike(3);
 
     for (int i = 0; i < 3; ++i) {
         std::cout << "Vehicle ID: " << vehicles[i]->getID() 
-                  << ", Parking Duration: " 
-                  << vehicles[i]->getParkingDuration()  
+                  << ", Parking Duration: " << vehicles[i]->getParkingDuration() 
                   << " seconds" << std::endl;
         delete vehicles[i];
     }

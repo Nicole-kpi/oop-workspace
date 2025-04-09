@@ -3,17 +3,16 @@
 #include <iostream>
 
 int main() {
-    ParkingLot lot(3); 
-    
-    
-    lot.parkVehicle(new Car(1));
-    lot.parkVehicle(new Car(2));
-    lot.parkVehicle(new Car(3));
-    lot.parkVehicle(new Car(4));  
-    
-   
-    lot.unparkVehicle(2);
-    lot.unparkVehicle(5);  
-    
+    ParkingLot lot(10);
+
+    // Park vehicles until full
+    for (int i = 1; i <= 11; ++i) {
+        lot.parkVehicle(new Car(i));
+    }
+
+    // Unpark a vehicle
+    lot.unparkVehicle(5);
+    lot.unparkVehicle(99); // Should print "Vehicle not in the lot"
+
     return 0;
 }

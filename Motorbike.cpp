@@ -2,8 +2,6 @@
 #include <ctime>
 
 Motorbike::Motorbike(int id) : Vehicle(id) {}
-double Motorbike::getParkingDuration() const{
-    time_t now = std::time(nullptr);
-    double duration = difftime(now, timeOfEntry);
-    return duration * 0.85;
+int Motorbike::getParkingDuration() const{
+    return static_cast<int> (Vehicle::getParkingDuration() * 0.85);
 }

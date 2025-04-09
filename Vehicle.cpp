@@ -10,7 +10,7 @@ std::time_t Vehicle::getTimeOfEntry() const{
     return timeOfEntry;
 }
 
-double Vehicle::getParkingDuration() const{
+int Vehicle::getParkingDuration() const{
     std::time_t currentTime = std::time(nullptr);
-    return difftime(currentTime, timeOfEntry);
+    return static_cast<int>(difftime(currentTime, timeOfEntry));
 }

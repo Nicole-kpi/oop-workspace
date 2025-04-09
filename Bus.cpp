@@ -1,8 +1,6 @@
 #include "Bus.h"
 #include <ctime>
 Bus::Bus(int id) : Vehicle(id) {}
-double Bus::getParkingDuration() const{
-    time_t now = std::time(nullptr);
-    double duration = difftime(now, timeOfEntry);
-    return duration * 0.75;
+int Bus::getParkingDuration() const{
+    return static_cast<int>(Vehicle::getParkingDuration() * 0.75);
 }
