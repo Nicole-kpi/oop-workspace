@@ -1,25 +1,33 @@
-#include <iostream>
 #include "Car.h"
 #include "Bus.h"
 #include "Motorbike.h"
-#include <thread>
-#include <chrono>
+#include <iostream>
+#include <ctime> 
+
+
+void delay(int seconds) {
+    clock_t start = clock();
+    while ((clock() - start) / CLOCKS_PER_SEC < seconds) {
+    }
+}
 
 int main() {
-    Car c("C1");
-    Bus b("B1");
-    Motorbike m("M1");
+    Vehicle* vehicles[] = {
+        new Car(1),
+        new Bus(2),
+        new Motorbike(3)
+    };
 
-    std::cout << "Testing vehicle IDs..." << std::endl;
-    std::cout << c.getID() << ", " << b.getID() << ", " << m.getID() << std::endl;
+   
+    delay(5);
 
-    std::this_thread::sleep_for(std::chrono::seconds(5));
-
-    std::cout << "Parking durations after 5 seconds:" << std::endl;
-    std::cout << "Car: " << c.getParkingDuration() << " seconds\n";
-    std::cout << "Bus: " << b.getParkingDuration() << " seconds\n";
-    std::cout << "Motorbike: " << m.getParkingDuration() << " seconds\n";
+    for (int i = 0; i < 3; ++i) {
+        std::cout << "Vehicle ID: " << vehicles[i]->getID() 
+                  << ", Parking Duration: " 
+                  << vehicles[i]->getParkingDuration()  
+                  << " seconds" << std::endl;
+        delete vehicles[i];
+    }
 
     return 0;
 }
-

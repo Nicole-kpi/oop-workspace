@@ -1,27 +1,19 @@
-#include <iostream>
-#include <vector>
-#include <thread>
-#include <chrono>
+#include "ParkingLot.h"
 #include "Car.h"
-#include "Bus.h"
-#include "Motorbike.h"
+#include <iostream>
 
 int main() {
-    std::vector<Vehicle*> vehicles;
-
-    vehicles.push_back(new Car("C1"));
-    vehicles.push_back(new Bus("B1"));
-    vehicles.push_back(new Motorbike("M1"));
-
-    std::this_thread::sleep_for(std::chrono::seconds(10));
-
-    for (auto v : vehicles) {
-        std::cout << v->getID() << " stayed for " << v->getParkingDuration() << " seconds" << std::endl;
-    }
-
-    for (auto v : vehicles) {
-        delete v;
-    }
-
+    ParkingLot lot(3); 
+    
+    
+    lot.parkVehicle(new Car(1));
+    lot.parkVehicle(new Car(2));
+    lot.parkVehicle(new Car(3));
+    lot.parkVehicle(new Car(4));  
+    
+   
+    lot.unparkVehicle(2);
+    lot.unparkVehicle(5);  
+    
     return 0;
 }

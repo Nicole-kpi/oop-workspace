@@ -4,7 +4,7 @@
 
 class Bus : public Vehicle{
 public:
-    Bus(std::string id);
+    Bus(int id);
     double getParkingDuration() const override;
 };
 #endif

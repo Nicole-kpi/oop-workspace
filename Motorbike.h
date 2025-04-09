@@ -4,7 +4,7 @@
 
 class Motorbike : public Vehicle{
 public:
-    Motorbike(std::string id);
+    Motorbike(int id);
     double getParkingDuration() const override;
 };
 #endif

@@ -1,50 +1,44 @@
 #include "ParkingLot.h"
 #include <iostream>
 
-ParkingLot::ParkingLot(int cap) : capacity(cap), count(0) {
-    vehicles = new Vehicle*[capacity];
-}
+ParkingLot::ParkingLot(int capacity) : maxCapacity(capacity) {}
 
 ParkingLot::~ParkingLot() {
-    for (int i = 0; i < count; ++i) {
-        delete vehicles[i];
+    for (auto vehicle : vehicles) {
+        delete vehicle;
     }
-    delete[] vehicles;
-}
-
-void ParkingLot::parkVehicle(Vehicle* v) {
-    if (count >= capacity) {
-        std::cout << "The lot is full\n";
-        delete v;
-        return;
-    }
-    vehicles[count++] = v;
-}
-
-void ParkingLot::unparkVehicle(std::string id) {
-    for (int i = 0; i < count; ++i) {
-        if (vehicles[i]->getID() == id) {
-            delete vehicles[i];
-            for (int j = i; j < count - 1; ++j) {
-                vehicles[j] = vehicles[j + 1];
-            }
-            --count;
-            return;
-        }
-    }
-    std::cout << "Vehicle not in the lot\n";
 }
 
 int ParkingLot::getCount() const {
-    return count;
+    return vehicles.size();
 }
 
-int ParkingLot::countOverstayingVehicles(int maxParkingDuration) const {
-    int total = 0;
-    for (int i = 0; i < count; ++i) {
-        if (vehicles[i]->getParkingDuration() > maxParkingDuration) {
-            ++total;
+void ParkingLot::parkVehicle(Vehicle* vehicle) {
+    if (vehicles.size() >= maxCapacity) {
+        std::cout << "The lot is full" << std::endl;
+        delete vehicle;
+        return;
+    }
+    vehicles.push_back(vehicle);
+}
+
+void ParkingLot::unparkVehicle(int id) {
+    for (auto it = vehicles.begin(); it != vehicles.end(); ++it) {
+        if ((*it)->getID() == id) {
+            delete *it;
+            vehicles.erase(it);
+            return;
         }
     }
-    return total;
+    std::cout << "Vehicle not in the lot" << std::endl;
+}
+
+int ParkingLot::countOverstayingVehicles(double maxParkingDuration) const {
+    int count = 0;
+    for (const auto vehicle : vehicles) {
+        if (vehicle->getParkingDuration() > maxParkingDuration) {
+            ++count;
+        }
+    }
+    return count;
 }
