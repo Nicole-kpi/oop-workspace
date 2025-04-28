@@ -13,7 +13,7 @@ public:
     int get_powerRating() const;
 
     void set_isOn(bool isOn);
-    bool ge_isOn() const;
+    bool get_isOn() const;
 
     void turnOn();
     void turnOff();
