@@ -11,8 +11,8 @@ int main() {
     tv1.turnOn();
     tv2.turnOn();
 
-     std::cout << "Initial screen size: "  << tv->get_screenSize() << " inches" << std::endl;
-    std::cout << "New screen size: " << tv->get_screenSize() << " inches" << std::endl;
+     std::cout << "Initial screen size: "  << tv2->get_screenSize() << " inches" << std::endl;
+    std::cout << "New screen size: " << tv2->get_screenSize() << " inches" << std::endl;
 
 
     return 0;
