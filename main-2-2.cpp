@@ -11,8 +11,8 @@ int main() {
     fridge1.turnOn();
     fridge2.turnOn();
 
-    std::cout << "Fridge1 Power Consumption: " << fridge1.get_powerConsumption() << std::endl;
-    std::cout << "Fridge2 Power Consumption: " << fridge2.get_powerConsumption() << std::endl;
+    std::cout << "Fridge1 Power Consumption: " << fridge1.getPowerConsumption() << std::endl;
+    std::cout << "Fridge2 Power Consumption: " << fridge2.getPowerConsumption() << std::endl;
 
     return 0;
 }
