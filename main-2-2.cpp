@@ -1,18 +1,18 @@
 #include <iostream>
-#include "Fridge.h"
+#include "TV.h"
 
 int main() {
-    Fridge fridge1;
-    Fridge fridge2(200, 300.0);
+    TV tv1;
+    TV tv2(150, 55.0);
 
-    fridge1.set_volume(150.0);
-    fridge1.set_powerRating(100);
+    tv1.set_screenSize(40.0);
+    tv1.set_powerRating(120);
 
-    fridge1.turnOn();
-    fridge2.turnOn();
+    tv1.turnOn();
+    tv2.turnOn();
 
-    std::cout << "Fridge1 Power Consumption: " << fridge1.getPowerConsumption() << std::endl;
-    std::cout << "Fridge2 Power Consumption: " << fridge2.getPowerConsumption() << std::endl;
+    std::cout << "TV1 Power Consumption: " << tv1.getPowerConsumption() << std::endl;
+    std::cout << "TV2 Power Consumption: " << tv2.getPowerConsumption() << std::endl;
 
     return 0;
 }
