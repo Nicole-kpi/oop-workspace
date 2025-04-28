@@ -11,7 +11,7 @@ int main() {
     fridge1.turnOn();
     fridge2.turnOn();
 
-    std::cout << "Initial volume: " << fridge1->getVolume() << " litres" << std::endl;
-    std::cout << "New volume: " <<  fridge2->getVolume() << " litres" << std::endl;
+    std::cout << "Initial volume: " << fridge1.getVolume() << " litres" << std::endl;
+    std::cout << "New volume: " <<  fridge2.getVolume() << " litres" << std::endl;
     return 0;
 }
