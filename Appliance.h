@@ -9,11 +9,11 @@ public:
     Appliance();
     Appliance(int powerRating);
 
-    void setPowerRating(int powerRating);
-    int getPowerRating() const;
+    void set_powerRating(int powerRating);
+    int get_powerRating() const;
 
-    void setIsOn(bool isOn);
-    bool getIsOn() const;
+    void set_isOn(bool isOn);
+    bool ge_isOn() const;
 
     void turnOn();
     void turnOff();

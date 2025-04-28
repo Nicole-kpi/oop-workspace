@@ -4,19 +4,19 @@ Appliance::Appliance() : powerRating(0), isOn(false) {}
 
 Appliance::Appliance(int powerRating) : powerRating(powerRating), isOn(false) {}
 
-void Appliance::setPowerRating(int powerRating) {
+void Appliance::set_powerRating(int powerRating) {
     this->powerRating = powerRating;
 }
 
-int Appliance::getPowerRating() const {
+int Appliance::get_powerRating() const {
     return powerRating;
 }
 
-void Appliance::setIsOn(bool isOn) {
+void Appliance::set_isOn(bool isOn) {
     this->isOn = isOn;
 }
 
-bool Appliance::getIsOn() const {
+bool Appliance::get_isOn() const {
     return isOn;
 }
 

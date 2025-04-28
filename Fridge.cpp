@@ -4,14 +4,14 @@ Fridge::Fridge() : Appliance(), volume(0.0){}
 
 Fridge::Fridge(int powerRating, double volume) : Appliance(powerRating), volume(volume){}
 
-void Fridge::setVolume(double volume){
+void Fridge::set_volume(double volume){
     this->volume = volume;
 }
 
-double Fridge::getVolume() const{
+double Fridge::get_volume() const{
     return volume;
 }
 
 double Fridge::getPowerConsumption(){
-    return getPowerRating()*24*(volume / 100);
+    return get_powerRating()*24*(volume / 100);
 }
