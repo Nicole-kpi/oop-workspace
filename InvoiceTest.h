@@ -1,3 +1,6 @@
+#ifndef INVOICE_H
+#define INVOICE_H
+
 #include <iostream>
 #include "Invoice.h"
 

@@ -1,3 +1,6 @@
+#ifndef EQUIVALENCETESTS_H
+#define EQUIVALENCETESTS_H
+
 #include <iostream>
 #include "Addition.h"
 

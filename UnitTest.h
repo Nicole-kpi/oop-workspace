@@ -15,7 +15,7 @@ private:
             std::cout << "Test 1 failed!" << std::endl;
         }
         
-        if (addtion.add(0, 0) != 0) {
+        if (addition.add(0, 0) != 0) {
             std::cout << "Test 2 failed!" << std::endl;
         }
 
