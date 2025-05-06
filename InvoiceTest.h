@@ -1,5 +1,5 @@
-#ifndef INVOICE_H
-#define INVOICE_H
+#ifndef INVOICETEST_H
+#define INVOICETEST_H
 
 #include <iostream>
 #include "Invoice.h"
