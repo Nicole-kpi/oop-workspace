@@ -20,13 +20,13 @@ public:
             try{
                 string line;
                 while (getline(_file, line)) {
-                    try{
+                    try {
                         int value = stoi(line);
                         records.push_back(value);
-                    } catch (const invalid_argument &e){
-                        cout << "Invaild_argument error" << endl;
-                        throw;
-                    } catch (const out_of_range &e){
+                        } catch (const invalid_argument &e) {
+                        cout << "invalid_argument error" << endl;
+                            throw;
+                        } catch (const out_of_range &e) {
                         cout << "out_of_range error" << endl;
                         throw;
                     }   
