@@ -18,7 +18,8 @@ std::vector<Course> University::get_courses() const {
     }
 
 void University::print() const {
-    cout << "University: " << name << "\nLocation: " << location << endl;
+    cout << "University: " << name << endl;
+    cout << "Location: " << location << endl;
     cout << "Courses:" << endl;
     for (const auto& c : courses) {
         c.print();
@@ -29,4 +30,4 @@ void University::print() const {
 }
 University::~University() { 
     delete gradebook; 
-    cout << "University destroyed." << endl;}
+    }

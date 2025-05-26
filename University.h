@@ -15,6 +15,7 @@ public:
     void addCourse(int id, const std::string& name);
     Gradebook* get_gradebook() const;
     std::vector<Course> get_courses() const;
+    void print() const;
     ~University();
 };
 #endif
