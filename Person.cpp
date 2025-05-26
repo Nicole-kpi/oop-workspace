@@ -9,6 +9,10 @@ string Person::get_name() const {
     return name;
 }
 
+Person::~Person() {
+    // Destructor logic if needed
+}
+
 void Person::print() const {
     cout << "Name: " << name << endl;
 }
