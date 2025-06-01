@@ -4,7 +4,6 @@
 #include "GameEntity.h"
 
 class Ship : public GameEntity, public virtual Effect {
-//参数化构造函数，使用GameEntityType构造函数
 public:
     Ship(int x, int y) : GameEntity(x, y, GameEntityType::ShipType) {}
 
@@ -14,7 +13,7 @@ public:
         int newY = std::get<1>(position) + dy;
         position = std::make_tuple(newX, newY);
     }
-    void apply(Entity& entity) override {
+    void apply(GameEntity& entity) override {
     }
 };
 

@@ -13,13 +13,10 @@ class Mine : public GameEntity, public virtual Effect {
         }
         // 爆炸函数：返回一个位置与自己相同的新 Explosion 实例
 
-        Explosion* explode() const{
-            // 创建一个新的 Explosion 实例，位置与 Mine 相同
-            Explosion* explosion = new Explosion();
-            explosion->setType(GameEntityType::ExplosionType);
-
-            return explosion;
-        }
+        Explosion* explode() const {
+        Explosion* explosion = new Explosion();
+        return explosion;
+    }
 };
 
 #endif
