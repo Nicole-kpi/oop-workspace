@@ -19,8 +19,9 @@ public:
     GameEntity(int x, int y, char type)
     std::tuple<int, int> getPos() const;
     GameEntityType getType() const;
+    void setType(GameEntityType type);
 
-    virtual~ GameEntity() {}；
+    virtual~ GameEntity() {};
 };
 
 #endif // GAME_ENTITY_H
