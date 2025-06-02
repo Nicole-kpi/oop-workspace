@@ -70,11 +70,11 @@ public:
                 Explosion explosion = mine->explode();
                 explosion.apply(*ship);
 
-                //if (verbose) std::cout << "Ship exploded!\n";
+                if (verbose) std::cout << "Ship exploded!\n";
             }
 
             for (GameEntity* e : entities) {
-                std::cout << "Entity Type: " << e->getType() << "\n";
+                //std::cout << "Entity Type: " << e->getType() << "\n";
             }
 
             bool anyShipAlive = false;
