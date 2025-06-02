@@ -5,18 +5,16 @@
 #include "Explosion.h"
 
 class Mine : public GameEntity, public virtual Effect {
-    public:
-        Mine(int x, int y) : GameEntity(x, y, GameEntityType::MineType) {}
+public:
+    Mine(int x, int y) : GameEntity(x, y, GameEntityType::MineType) {}
 
+    Explosion explode() {
+        setType(GameEntityType::NoneType);
+        return Explosion(std::get<0>(getPos()), std::get<1>(getPos()));
+    }
 
-        void apply(GameEntity& entity) override {
-        }
-        // 爆炸函数：返回一个位置与自己相同的新 Explosion 实例
-
-        Explosion* explode() const {
-        Explosion* explosion = new Explosion();
-        return explosion;
+    void apply(GameEntity& entity) override {
     }
 };
 
-#endif
+#endif // MINE_H

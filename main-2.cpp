@@ -22,8 +22,8 @@ int main() {
               << std::get<0>(ship->getPos()) << ", "
               << std::get<1>(ship->getPos()) << ")\n";
 
-    Explosion* explosion = mine->explode();
-    explosion->apply(*ship);
+    Explosion explosion = mine->explode();  
+    explosion.apply(*ship);                
 
     std::cout << "Ship type after explosion: "
               << (ship->getType() == GameEntityType::NoneType ? "NoneType" : "Other")
@@ -31,7 +31,7 @@ int main() {
 
     delete ship;
     delete mine;
-    delete explosion;
 
     return 0;
 }
+

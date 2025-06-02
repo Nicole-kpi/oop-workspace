@@ -4,13 +4,15 @@
 #include "GameEntity.h"
 
 class Explosion : public GameEntity, public virtual Effect {
-    public:
-        Explosion(): GameEntity (-1, -1, GameEntityType::ExplosionType) {}
-            // Default constructor initializes position to (-1, -1)
+public:
+    Explosion() : GameEntity(-1, -1, GameEntityType::ExplosionType) {}
 
-            
-        void apply(GameEntity& entity) override {
-            entity.setType(GameEntityType::NoneType);
-        }
+    Explosion(int x, int y) : GameEntity(x, y, GameEntityType::ExplosionType) {}
+
+    void apply(GameEntity& entity) override {
+        entity.setType(GameEntityType::NoneType);
+        entity.setPosition(-1, -1);
+    }
 };
+
 #endif // EXPLOSION_H

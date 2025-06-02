@@ -30,6 +30,9 @@ public:
     void setType(GameEntityType t) {
         type = t;
     }
+    void setPosition(int x, int y) {
+        position = std::make_tuple(x, y);
+    }
 
     virtual ~GameEntity() {}
 };
