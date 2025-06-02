@@ -37,58 +37,59 @@ public:
         return entities;
     }
 
-    void gameLoop(int maxIterations, double mineDistanceThreshold) {
-    for (int iter = 0; iter < maxIterations; ++iter) {
-        std::cout << "Iteration: " << iter + 1 << "\n";
+    // 添加 verbose 参数用于控制输出
+    void gameLoop(int maxIterations, double mineDistanceThreshold, bool verbose = true) {
+        for (int iter = 0; iter < maxIterations; ++iter) {
+            if (verbose) std::cout << "Iteration: " << iter + 1 << "\n";
 
+            std::vector<std::pair<Ship*, Mine*>> shipsToExplode;
 
-        std::vector<std::pair<Ship*, Mine*>> shipsToExplode;
+            for (GameEntity* entity : entities) {
+                if (entity->getType() == ShipType) {
+                    Ship* ship = dynamic_cast<Ship*>(entity);
+                    ship->move(1, 0);
 
-        for (GameEntity* entity : entities) {
-            if (entity->getType() == ShipType) {
-                Ship* ship = dynamic_cast<Ship*>(entity);
-                ship->move(1, 0);
+                    for (GameEntity* other : entities) {
+                        if (other->getType() == MineType) {
+                            Mine* mine = dynamic_cast<Mine*>(other);
+                            double dist = Utils::calculateDistance(ship->getPos(), mine->getPos());
 
-                for (GameEntity* other : entities) {
-                    if (other->getType() == MineType) {
-                        Mine* mine = dynamic_cast<Mine*>(other);
-                        double dist = Utils::calculateDistance(ship->getPos(), mine->getPos());
-
-                        if (dist <= mineDistanceThreshold) {
-                            shipsToExplode.emplace_back(ship, mine);
-                            break; 
+                            if (dist <= mineDistanceThreshold) {
+                                shipsToExplode.emplace_back(ship, mine);
+                                break;
+                            }
                         }
                     }
                 }
             }
-        }
 
-        for (auto& pair : shipsToExplode) {
-            Mine* mine = pair.second;
-            Ship* ship = pair.first;
+            for (auto& pair : shipsToExplode) {
+                Mine* mine = pair.second;
+                Ship* ship = pair.first;
 
-            Explosion explosion = mine->explode();
-            explosion.apply(*ship);
+                Explosion explosion = mine->explode();
+                explosion.apply(*ship);
 
-            std::cout << "Ship exploded!\n";
-        }
+                if (verbose) std::cout << "Ship exploded!\n";
+            }
 
-        for (GameEntity* e : entities) {
-            std::cout << "Entity Type: " << e->getType() << "\n";
-        }
+            for (GameEntity* e : entities) {
+                std::cout << "Entity Type: " << e->getType() << "\n";
+            }
 
-        bool anyShipAlive = false;
-        for (GameEntity* e : entities) {
-            if (e->getType() == ShipType) {
-                anyShipAlive = true;
+            bool anyShipAlive = false;
+            for (GameEntity* e : entities) {
+                if (e->getType() == ShipType) {
+                    anyShipAlive = true;
+                    break;
+                }
+            }
+
+            if (!anyShipAlive) {
                 break;
             }
         }
-        if (!anyShipAlive) {
-            break;
-        }
     }
-}
 
     ~Game() {
         for (GameEntity* e : entities) {
