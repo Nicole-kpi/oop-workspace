@@ -36,11 +36,9 @@ public:
 
         return entities;
     }
-
-    // 添加 verbose 参数用于控制输出
     void gameLoop(int maxIterations, double mineDistanceThreshold, bool verbose = true) {
         for (int iter = 0; iter < maxIterations; ++iter) {
-            if (verbose) std::cout << "Iteration: " << iter + 1 << "\n";
+            //if (verbose) std::cout << "Iteration: " << iter + 1 << "\n";
 
             std::vector<std::pair<Ship*, Mine*>> shipsToExplode;
 
@@ -70,7 +68,7 @@ public:
                 Explosion explosion = mine->explode();
                 explosion.apply(*ship);
 
-                if (verbose) std::cout << "Ship exploded!\n";
+                //if (verbose) std::cout << "Ship exploded!\n";
             }
 
             for (GameEntity* e : entities) {
