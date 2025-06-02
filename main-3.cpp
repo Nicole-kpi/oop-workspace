@@ -1,33 +1,23 @@
+// main-3.cpp
 #include <iostream>
-#include "GameEntity.h"
-#include "Mine.h"
-#include "Ship.h"
-#include "Explosion.h"
-#include "Utils.h"
+#include "Game.h"
 
 int main() {
-    
-    Mine* mine = new Mine(5, 5);
-    Ship* ship = new Ship(5, 6);  
+    // 创建 Game 对象
+    Game game;
 
-    std::cout << "Iteration: 1\n";
+    // 初始化游戏，3 个 Ship，2 个 Mine，网格大小为 10x10
+    std::vector<GameEntity*> entities = game.initGame(3, 2, 10, 10);
 
-   
-    double distance = Utils::calculateDistance(ship->getPos(), mine->getPos());
-
-    if (distance <= 2.0) {  
-        Explosion* myexplosion = mine->explode();
-        myexplosion->apply(*ship);  
-        delete myexplosion;
-        std::cout << "Ship exploded!\n";
+    std::cout << "Initial entities:\n";
+    for (auto* entity : entities) {
+        std::tuple<int, int> pos = entity->getPos();
+        std::cout << "Type: " << entity->getType()
+                  << " at (" << std::get<0>(pos) << ", " << std::get<1>(pos) << ")\n";
     }
 
-
-    std::cout << "Entity Type: " << mine->getType() << std::endl;
-
-    delete ship;
-    delete mine;
+    std::cout << "\nStarting game loop...\n";
+    game.gameLoop(10, 5.0);
 
     return 0;
 }
-
