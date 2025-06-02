@@ -15,17 +15,17 @@ private:
     std::vector<GameEntity*> entities;
 
 public:
-    // 设置 entities（可用于外部测试）
+   
     void set_entities(const std::vector<GameEntity*>& newEntities) {
         entities = newEntities;
     }
 
-    // 获取 entities
+  
     std::vector<GameEntity*> get_entities() const {
         return entities;
     }
 
-    // 初始化游戏，生成 numShips 个 Ship 和 numMines 个 Mine
+ 
     std::vector<GameEntity*> initGame(int numShips, int numMines, int gridWidth, int gridHeight) {
         entities.clear();
 
@@ -42,7 +42,7 @@ public:
         return entities;
     }
 
-    // 模拟游戏主循环
+
     void gameLoop(int maxIterations, double mineDistanceThreshold) {
         for (int iteration = 0; iteration < maxIterations; ++iteration) {
             std::cout << "Iteration: " << iteration + 1 << std::endl;
@@ -50,20 +50,20 @@ public:
             bool shipAlive = false;
 
             for (GameEntity* entity : entities) {
-                // 找到所有 Ship
+               
                 Ship* ship = dynamic_cast<Ship*>(entity);
                 if (ship && ship->getType() == ShipType) {
                     shipAlive = true;
-                    ship->move(1, 0);  // 向右移动 1
+                    ship->move(1, 0);  
 
-                    // 遍历 Mine 检查距离
+                
                     for (GameEntity* other : entities) {
                         Mine* mine = dynamic_cast<Mine*>(other);
                         if (mine && mine->getType() == MineType) {
                             double distance = Utils::calculateDistance(ship->getPos(), mine->getPos());
                             if (distance <= mineDistanceThreshold) {
                                 Explosion* myexplosion = mine->explode();
-                                explosion->apply(*ship);  // 爆炸影响船
+                                myexplosion->apply(*ship);  
                                 delete myexplosion;
                                 std::cout << "Ship exploded!" << std::endl;
                                 break;
@@ -73,12 +73,12 @@ public:
                 }
             }
             if (!shipAlive) {
-                std::cout << "🚩 All ships destroyed. Ending simulation." << std::endl;
+                std::cout << "All ships destroyed. Ending simulation." << std::endl;
                 break;
             }
         }
     }
-    // 析构函数清理实体
+
     ~Game() {
         for (GameEntity* entity : entities) {
             delete entity;
