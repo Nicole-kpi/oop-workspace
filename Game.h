@@ -2,6 +2,7 @@
 #define GAME_H
 
 #include <vector>
+#include <cmath>
 #include "GameEntity.h"
 #include "Ship.h"
 #include "Mine.h"
@@ -13,8 +14,13 @@ private:
     std::vector<GameEntity*> entities;
 
 public:
-    std::vector<GameEntity*> get_entities() const { return entities; }
-    void set_entities(const std::vector<GameEntity*>& new_entities) { entities = new_entities; }
+    std::vector<GameEntity*> get_entities() const {
+        return entities;
+    }
+
+    void set_entities(const std::vector<GameEntity*>& newEntities) {
+        entities = newEntities;
+    }
 
     std::vector<GameEntity*> initGame(int numShips, int numMines, int gridWidth, int gridHeight) {
         for (int i = 0; i < numShips; ++i) {
@@ -29,48 +35,40 @@ public:
     }
 
     void gameLoop(int maxIterations, double mineDistanceThreshold) {
-        for (int iter = 1; iter <= maxIterations; ++iter) {
-            std::cout << "Iteration: " << iter << std::endl;
-            for (auto* entity : entities) {
-                if (entity->getType() == GameEntityType::ShipType) {
+        for (int iter = 0; iter < maxIterations; ++iter) {
+            std::cout << "Iteration: " << iter + 1 << std::endl;
+            for (GameEntity* entity : entities) {
+                if (entity->getType() == ShipType) {
                     Ship* ship = dynamic_cast<Ship*>(entity);
-                    ship->move(1, 0);
-                }
-            }
+                    ship->move(1, 0);  
 
-            for (auto* ship_entity : entities) {
-                if (ship_entity->getType() != GameEntityType::ShipType) continue;
-                Ship* ship = dynamic_cast<Ship*>(ship_entity);
+                    for (GameEntity* other : entities) {
+                        if (other->getType() == MineType) {
+                            Mine* mine = dynamic_cast<Mine*>(other);
+                            double dist = Utils::calculateDistance(ship->getPos(), mine->getPos());
 
-                for (auto* mine_entity : entities) {
-                    if (mine_entity->getType() != GameEntityType::MineType) continue;
-                    Mine* mine = dynamic_cast<Mine*>(mine_entity);
-
-                    double distance = Utils::calculateDistance(ship->getPos(), mine->getPos());
-                    if (distance <= mineDistanceThreshold) {
-                       Explosion* explosion = mine->explode();
-                        explosion->apply(*ship);
-                        delete explosion;
-
-                        std::cout << "Ship exploded!\n";
-                        std::cout << "Entity Type: " << ship->getType() << std::endl;;
+                            if (dist < mineDistanceThreshold) {
+                                Explosion explosion = mine->explode();
+                                explosion.apply(*ship);
+                                std::cout << "Ship exploded!" << std::endl;
+                            }
+                        }
                     }
                 }
             }
 
-            // Check if all ships destroyed
-            bool allDestroyed = true;
-            for (auto* entity : entities) {
-                if (entity->getType() == GameEntityType::ShipType)
-                    allDestroyed = false;
+            for (GameEntity* e : entities) {
+                std::cout << "Entity Type: " << e->getType() << std::endl;
             }
-            if (allDestroyed) break;
         }
     }
 
     ~Game() {
-        for (auto* e : entities) delete e;
+        for (auto* e : entities) {
+            delete e;
+        }
+        entities.clear();
     }
 };
 
-#endif
+#endif // GAME_H
