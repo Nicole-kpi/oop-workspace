@@ -48,10 +48,12 @@ public:
 
                     double distance = Utils::calculateDistance(ship->getPos(), mine->getPos());
                     if (distance <= mineDistanceThreshold) {
-                        Explosion* explosion = mine->explode();
+                       Explosion* explosion = mine->explode();
                         explosion->apply(*ship);
                         delete explosion;
-                        std::cout << "Ship exploded!" << std::endl;
+
+                        std::cout << "Ship exploded!\n";
+                        std::cout << "Entity Type: " << ship->getType() << std::endl;;
                     }
                 }
             }
