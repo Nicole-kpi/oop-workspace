@@ -70,7 +70,7 @@ public:
                 Explosion explosion = mine->explode();
                 explosion.apply(*ship);
 
-                if (verbose) std::cout << "Ship exploded!\n";
+                //if (verbose) std::cout << "Ship exploded!\n";
             }
 
             for (GameEntity* e : entities) {
