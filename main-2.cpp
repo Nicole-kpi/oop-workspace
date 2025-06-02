@@ -18,9 +18,9 @@ int main(){
               << std::get<0>(ship->getPos()) << ", "
               << std::get<1>(ship->getPos()) << ")\n";
 
-    Explosion* explosion = mine->explode();
+    Explosion* myexplosion = mine->explode();
 
-    explosion->apply(*ship);
+    myexplosion->apply(*ship);
 
     // 检查 ship 的类型是否已被设置为 NoneType
     std::cout << "Ship type after explosion: "
@@ -29,7 +29,7 @@ int main(){
     // 清理内存
     delete ship;
     delete mine;
-    delete explosion;
+    delete myexplosion;
 
     return 0;
 

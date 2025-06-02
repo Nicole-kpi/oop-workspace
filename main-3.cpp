@@ -1,21 +1,33 @@
 #include <iostream>
-#include "Game.h"
-
+#include "GameEntity.h"
+#include "Mine.h"
+#include "Ship.h"
+#include "Explosion.h"
+#include "Utils.h"
 
 int main() {
-    // 创建 Game 对象
-    Game game;
+    
+    Mine* mine = new Mine(5, 5);
+    Ship* ship = new Ship(5, 6);  
 
-    // 初始化游戏：3 个 Ship，2 个 Mine，网格大小 10x10
-    std::vector<GameEntity*> entities = game.initGame(3, 2, 10, 10);
-    game.set_entities(entities);
+    std::cout << "Iteration: 1\n";
 
-    std::cout << "Game initialized with " << entities.size() << " entities.\n";
+   
+    double distance = Utils::calculateDistance(ship->getPos(), mine->getPos());
 
-    // 运行游戏循环：最多 10 次迭代，爆炸距离阈值为 2.0
-    game.gameLoop(10, 5.0);
+    if (distance <= 2.0) {  
+        Explosion* myexplosion = mine->explode();
+        myexplosion->apply(*ship);  
+        delete myexplosion;
+        std::cout << "Ship exploded!\n";
+    }
 
-    std::cout << "Game finished.\n";
+
+    std::cout << "Entity Type: " << mine->getType() << std::endl;
+
+    delete ship;
+    delete mine;
 
     return 0;
 }
+
