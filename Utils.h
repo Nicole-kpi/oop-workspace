@@ -8,18 +8,18 @@
 
 class Utils {
 public:
-    static std::tuple<int, int> generateRandomPos(int gridWidth, int gridHeight) {
+    static std::pair<int, int> generateRandomPos(int gridWidth, int gridHeight) {
         int x = rand() % gridWidth;
         int y = rand() % gridHeight;
-        return std::make_tuple(x, y);
+        return std::make_pair(x, y);
     }
 
-    static double calculateDistance(std::tuple<int, int> pos1, std::tuple<int, int> pos2) {
+    static double calculateDistance(std::pair<int, int>& a, std::pair<int, int> b) {
     //计算两个位置之间的欧几里得距离
-        int x1 = std::get<0>(pos1);
-        int y1 = std::get<1>(pos1);
-        int x2 = std::get<0>(pos2);
-        int y2 = std::get<1>(pos2);
+        int x1 = a.first;
+        int y1 = a.second;
+        int x2 = b.first;
+        int y2 = b.second;
         return sqrt(pow(x2 - x1, 2) + pow(y2 - y1, 2));
     }
 };

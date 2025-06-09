@@ -13,7 +13,7 @@ enum GameEntityType {
 
 class GameEntity : public virtual Effect {
 protected:
-    std::tuple<int, int> position;
+    std::pair<int, int> position;
     GameEntityType type;
 
 public:
@@ -21,7 +21,7 @@ public:
         position = std::make_tuple(x, y);
         type = t;
     }
-    std::tuple<int, int> getPos() const {
+    std::pair<int, int> getPos() const {
         return position;
     }
     GameEntityType getType() const {
@@ -31,7 +31,7 @@ public:
         type = t;
     }
     void setPosition(int x, int y) {
-        position = std::make_tuple(x, y);
+        position = std::make_pair(x, y);
     }
 
     virtual ~GameEntity() {}
