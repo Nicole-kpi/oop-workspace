@@ -104,23 +104,62 @@ using namespace std;
 //     return 0;
 // }
 
-class GameObject{
-    public:
-        GameObject(){
-            gameObjctCount++;
-        }
-        int getGameObjectCount(){
-            return gameObjctCount;
-        }
-    private:
-        static int gameObjctCount; // 静态成员变量，用于记录GameObject的数量
+// class GameObject{
+//     public:
+//         GameObject(){
+//             gameObjctCount++;
+//         }
+//     static int  getGameObjectCount(){
+//             return gameObjctCount;
+//         }
+//     private:
+//         static int gameObjctCount; // 静态成员变量，用于记录GameObject的数量
+// };
+
+// int GameObject::gameObjctCount = 0; // 静态成员变量的定义和初始化
+
+// int main(){
+//     GameObject g1; // 创建第一个GameObject对象
+//     GameObject* g2;  // 创建指向GameObject的指针
+//     cout << "Number of GameObjects1: " << g1.getGameObjectCount() << endl;
+//     cout << "Number of GameObjects2: " << g2->getGameObjectCount() << endl;// 输出GameObject的数量
+//     cout << "Number of GameObjects3: " << GameObject::getGameObjectCount() << endl; // 直接访问静态成员变量
+//     return 0;
+// }
+
+
+
+
+// class Helper{
+// public:
+//     static void StaticFunction(){
+//         cout << "I am a class function" << endl;
+//     }
+// private:
+//     int x = 5;
+// };
+
+// int main(){
+//     Helper::StaticFunction(); 
+// }
+
+
+class Game {
+private:
+    static int totalGames;
+
+public:
+    Game() { totalGames++; }
+
+    static int getTotalGames() { return totalGames; }
 };
 
-int GameObject::gameObjctCount = 0; // 静态成员变量的定义和初始化
+int Game::totalGames = 0;
 
-int main(){
-    GameObject g1; // 创建第一个GameObject对象
-    GameObject* g2; // 创建指向GameObject的指针
-    cout << "Number of GameObjects: " << g1.getGameObjectCount() << endl; // 输出GameObject的数量
+int main() {
+    Game g1;
+    Game g2;
+    cout << g1.getTotalGames() << endl; // 输出当前游戏数量
+    cout << Game::getTotalGames() << endl;
     return 0;
 }
