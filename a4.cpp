@@ -1,15 +1,15 @@
 #include <iostream>
 
-int power(int& number){
-    return number * number;
-}
+// int power(int& number){
+//     return number * number;
+// }
 
-int main(){
-    int x = 5;
-    power(x);
-    std::cout << x << std::endl; 
-    return 0;
-} //输出结果为5，因为power函数返回的是number的平方，但并没有修改x的值。x仍然是5，所以输出结果是5。
+// int main(){
+//     int x = 5;
+//     power(x);
+//     std::cout << x << std::endl; 
+//     return 0;
+//} //输出结果为5，因为power函数返回的是number的平方，但并没有修改x的值。x仍然是5，所以输出结果是5。
 
 // //修改使其输出为25
 // #include <iostream>
@@ -49,3 +49,13 @@ int main(){
 //     std::cout << x << std::endl; // 输出x的值，此时x已经被修改为25
 //     return 0;
 // }
+
+int modify(double& number){
+    return number + 1.0; // 返回number加1.0的结果
+}
+
+int main(){
+    double x = 5.25;
+    int y = modify(x); // 调用modify函数，传递x的引用
+    std::cout << x << ',' << y << std::endl; // 输出x和y的值
+}

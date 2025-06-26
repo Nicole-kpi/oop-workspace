@@ -35,7 +35,7 @@ using namespace std;
 
 //     cout << p-q << endl; // 输出p和q的地址差
 //     return 0; // 输出结果为0，因为p和q指向的是同一个地址，即x的地址
-//}
+// }
 
 // void b(int* p){
 //     *p = *p + 1;
@@ -137,38 +137,41 @@ using namespace std;
 
 
 // int main(){
-//     B b;
+//     //A a; // 创建A的对象
+//     B b; // 创建B的对象，B继承自A
+//     // A* a = new B(); // 创建B的对象，但指针类型为A
+//     // delete a; // 删除对象，调用B的析构函数和A的析构函数
 //     return 0;
 // }
 
-class B{
-    private:
-        int _id;
-    public:
-        B(int id){_id = id;}
-        B():B(0.5){cout << "+B";}
-        int get_id(){return _id;}
-        void set_id(int id){_id = id;}
-        ~B(){
-            cout << "-B";
-        }
-};
+// class B{
+//     private:
+//         int _id;
+//     public:
+//         B(int id){_id = id;}
+//         B():B(0.5){cout << "+B";}
+//         int get_id(){return _id;}
+//         void set_id(int id){_id = id;}
+//         ~B(){
+//             cout << "-B";
+//         }
+// };
 
-class A{
-    private:
-        B* b;
-    public:
-        A(){
-            b = new B[2];
-            cout << "+A";}
-        ~A(){
-            delete[] b;
-            cout << "-A";}
-};
-int main(){
-    A a;
-    return 0;
-}
+// class A{
+//     private:
+//         B b;
+//     public:
+//         A(){
+//             //b = new B[2];
+//             cout << "+A";}
+//         ~A(){
+//             //delete[] b;
+//             cout << "-A";}
+// };
+// int main(){
+//     A a;
+//     return 0;
+// }
 
 // class Sample {
 // private:
@@ -212,5 +215,28 @@ int main(){
 //     const Number n;
 //     std::cout << n.get() << std::endl;
 //     // n.set(50); // Line D
+// }
+
+// #include <iostream>
+// using namespace std;
+
+// class Animal {
+// public:
+//     void speak() {
+//         cout << "Animal speaks" << endl;
+//     }
+// };
+
+// class Dog : public Animal {
+// public:
+//     void speak() {
+//         cout << "Dog barks" << endl;
+//     }
+// };
+
+// int main() {
+//     Animal* pet = new Dog();
+//     pet->speak();
+//     return 0;
 // }
 
